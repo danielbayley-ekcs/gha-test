@@ -8,14 +8,16 @@ on:
         required: true
         type: environment
         default: production
-      
+
       debug:
         description: Enable debug logging.
         type: boolean
-
 jobs:
   test:
     runs-on: ubuntu-latest
+    environment:
+      name: ${{ inputs.environment }}
+      deployment: false
     env: &env
       NODE_ENV: ${{ vars.NODE_ENV }}
 
