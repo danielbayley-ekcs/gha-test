@@ -18,8 +18,8 @@ jobs:
     environment:
       name: ${{ inputs.environment }}
       deployment: false
-    env: &env
-      NODE_ENV: ${{ vars.NODE_ENV }}
+    #env: &env
+      #NODE_ENV: ${{ vars.NODE_ENV }}
 
     steps:
     #- run: "ACTIONS_STEP_DEBUG=1" >> $GITHUB_ENV
@@ -27,15 +27,13 @@ jobs:
     - name: Debug context/environment
       #if: runner.debug == '1' || vars.ACTIONS_STEP_DEBUG == 'true' || inputs.debug == 'true'
       run: |
-        echo '::debug::${{ toJSON(github) }}'
-        echo '::debug::${{ toJSON(vars) }}'
-        echo '::debug::${{ toJSON(env) }}'
+        echo ::debug::${{ toJSON(github) }}
+        echo ::debug::${{ toJSON(vars) }}
+        echo ::debug::${{ toJSON(env) }}
       #echo "toJSON: ${{ format('[{0}, {1}, {2}]', toJSON(github), toJSON(vars), toJSON(env)) }}"
 
     - name: NODE_ENV
-      run: | # FIXME
-        echo "NODE_ENV: ${NODE_ENV:-failed}"
-        echo "NODE_ENV: ${{ vars.NODE_ENV || 'vars.NODE_ENV failed' }}"
+      run: echo "NODE_ENV: $NODE_ENV
       #env: *env
 
     - name: Checkout
