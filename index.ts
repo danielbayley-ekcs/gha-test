@@ -2,10 +2,6 @@
 const str: string = "abc"
 const n: number = "1"
 
-console.log(n)
-
-console.log("NODE_ENV:", process.env.NODE_ENV || "NODE_ENV failed")
-
 const console = {
   ...globalThis.console,
   debug(message, ...values) {
@@ -15,6 +11,10 @@ const console = {
     values.forEach(console.dir)
   }
 }
+
+console.log(n)
+
+console.log("NODE_ENV:", process.env.NODE_ENV || "NODE_ENV failed")
 
 console.debug(`debugging: ${str}`)
 
