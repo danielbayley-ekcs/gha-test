@@ -23,7 +23,7 @@ jobs:
 
     steps:
     - name: Reflect repository environment
-      run: jq 'to_entries | .[] | "\(.key)=\(.value)"' --raw-output <<< '${{ toJSON(vars) }}' #>> $GITHUB_ENV
+      run: jq 'to_entries[] | "\(.key)=\(.value)"' --raw-output <<< '${{ toJSON(vars) }}' #>> $GITHUB_ENV
 
     - name: Debug context/environment
       if: runner.debug == '1' || vars.ACTIONS_STEP_DEBUG == 'true' || inputs.debug == 'true' #env.ACTIONS_STEP_DEBUG
