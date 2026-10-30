@@ -22,9 +22,6 @@ jobs:
       #ACTIONS_STEP_DEBUG: ${{ secrets.ACTIONS_STEP_DEBUG || vars.ACTIONS_STEP_DEBUG }}
 
     steps:
-    - name: Reflect repository environment
-      run: jq 'to_entries[] | "\(.key)=\(.value)"' <<< '${{ toJSON(vars) }}' >> $GITHUB_ENV
-
     - name: Debug context/environment
       if: runner.debug == '1' || vars.ACTIONS_STEP_DEBUG == 'true' || inputs.debug == 'true' #env.ACTIONS_STEP_DEBUG
       run: |
@@ -32,6 +29,9 @@ jobs:
         echo "::debug::${{ toJSON(vars) }}"
         echo "::debug::${{ toJSON(env) }}"
       #echo "toJSON: ${{ format('[{0}, {1}, {2}]', toJSON(github), toJSON(vars), toJSON(env)) }}"
+
+    - name: Reflect repository environment
+      run: jq 'to_entries[] | "\(.key)=\(.value)"' <<< '${{ toJSON(vars) }}' >> $GITHUB_ENV
 
     - name: NODE_ENV
       run: |
