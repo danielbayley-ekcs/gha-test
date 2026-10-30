@@ -24,7 +24,7 @@ jobs:
       #if: runner.debug == '1' || vars.ACTIONS_STEP_DEBUG == 'true' || inputs.debug == 'true'
       run: |
         echo "::debug::Debugging"
-        echo "toJSON: ${{ toJSON('[github, vars, env]') }}"
+        echo "toJSON: ${{ toJSON('{ github, vars, env }') }}"
 
     - name: NODE_ENV
       run: |
