@@ -18,9 +18,13 @@ jobs:
     steps:
     - name: Debug context/environment
       if: runner.debug == '1' || vars.ACTIONS_STEP_DEBUG == 'true' || inputs.debug == 'true'
-      run: echo "::debug::${{ toJSON('[github, vars, env]') }}"
+      run: |
+        echo "::debug::Debugging"
+        echo "toJSON: ${{ toJSON('[github, vars, env]') }}"
 
     - name: NODE_ENV
       run: |
-        echo "NODE_ENV: ${{ vars.NODE_ENV }}"
+        echo "HOME: ${{ vars.ELSE || '$HOME' }}"
+        echo "NODE_ENV: ${NODE_ENV:-failed}"
+        echo "NODE_ENV: ${{ vars.NODE_ENV || 'vars.NODE_ENV failed' }}"
       #env: *env
