@@ -20,6 +20,8 @@ jobs:
       NODE_ENV: ${{ vars.NODE_ENV }}
 
     steps:
+    #- run: "ACTIONS_STEP_DEBUG=1" >> $GITHUB_ENV
+    
     - name: Debug context/environment
       #if: runner.debug == '1' || vars.ACTIONS_STEP_DEBUG == 'true' || inputs.debug == 'true'
       run: |
