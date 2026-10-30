@@ -22,5 +22,5 @@ jobs:
 
     - name: NODE_ENV
       run: |
-        echo "NODE_ENV: $NODE_ENV"
-      env: *env
+        echo "NODE_ENV: ${{ vars.NODE_ENV }}"
+      #env: *env
