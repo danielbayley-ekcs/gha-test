@@ -8,6 +8,10 @@ on:
         required: true
         type: environment
         default: production
+      
+      debug:
+        description: Enable debug logging.
+        type: boolean
 
 jobs:
   test:
