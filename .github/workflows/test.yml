@@ -15,5 +15,9 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-    - if: runner.debug == '1' || vars.ACTIONS_STEP_DEBUG == 'true' || inputs.debug == 'true'
+    - name: Debug context/environment
+      if: runner.debug == '1' || vars.ACTIONS_STEP_DEBUG == 'true' || inputs.debug == 'true'
       run: echo "::debug::${{ toJSON('[github, vars, env]') }}"
+
+    - name: NODE_ENV
+      run: echo "NODE_ENV: $NODE_ENV"
