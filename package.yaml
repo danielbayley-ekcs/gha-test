@@ -1,0 +1,16 @@
+name: test
+private: true
+type: module
+
+engines:
+  node: &node-version ">=22.18.0"
+  pnpm: &pnpm-version ^12
+devEngines:
+  runtime:
+    name: node
+    version: *node-version
+    onFail: download
+  packageManager:
+    name: pnpm
+    version: *pnpm-version
+    onFail: download
