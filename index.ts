@@ -1,8 +1,8 @@
 #! /usr/bin/env node
 const { NODE_ENV, CI, GITHUB_ACTIONS, ACTIONS_STEP_DEBUG } = process.env
-export const ci = CI || GITHUB_ACTIONS //"ACTIONS_STEP_DEBUG" in process.env
-export const production = NODE_ENV === "production"
-export const debug = !production || ACTIONS_STEP_DEBUG != null
+const ci = CI || GITHUB_ACTIONS
+const production = NODE_ENV === "production"
+const debug = !production || ACTIONS_STEP_DEBUG != null
 
 const str: string = "abc"
 const n: number = "1" // node runs, but this would fail typecheck
@@ -17,11 +17,6 @@ const console = {
   }
 }
 
-console.log(n)
-
 console.log("NODE_ENV:", process.env.NODE_ENV || "NODE_ENV failed")
 
-console.debug(`debugging: ${str}`)
-
-console.log(`::debug::RUNNER_DEBUG or ACTIONS_RUNNER_DEBUG is true`)
-
+console.debug("\:\:debug\:\:ing:") // shows only if ACTIONS_STEP_DEBUG
