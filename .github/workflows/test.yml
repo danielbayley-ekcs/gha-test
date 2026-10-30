@@ -4,7 +4,8 @@ on:
   workflow_dispatch: &inputs
     inputs:
       environment:
-        description: Choose an environment
+        #description: Choose an environment
+        type: environment
         required: true
         default: production
 
@@ -15,4 +16,3 @@ jobs:
     steps:
     - if: runner.debug == '1' || vars.ACTIONS_STEP_DEBUG == 'true' || inputs.debug == 'true'
       run: echo '::debug::${{ toJSON(github, vars, env) }}'
-
