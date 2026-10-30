@@ -14,3 +14,9 @@ devEngines:
     name: pnpm
     version: *pnpm-version
     onFail: download
+
+devDependencies:
+  yaml: ^2.9.1
+
+scripts:
+  prepare: yaml --single --json --indent ${TABSIZE:-2} < package.yaml > package.json
