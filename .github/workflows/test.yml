@@ -33,7 +33,8 @@ jobs:
       #echo "toJSON: ${{ format('[{0}, {1}, {2}]', toJSON(github), toJSON(vars), toJSON(env)) }}"
 
     - name: NODE_ENV
-      run: echo "NODE_ENV: $NODE_ENV"
+      run: |
+        echo "NODE_ENV: $NODE_ENV"
       #env: *env
 
     - name: Checkout
