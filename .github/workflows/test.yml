@@ -25,7 +25,8 @@ jobs:
     - name: Debug context/environment
       #if: runner.debug == '1' || vars.ACTIONS_STEP_DEBUG == 'true' || inputs.debug == 'true'
       run: |
-        echo "toJSON: ${{ format('[{0}, {1}, {2}]', toJSON(github), toJSON(vars), toJSON(env)) }}"
+        echo "toJSON: ${{ format('{0}\n{1}\n{2}', toJSON(github), toJSON(vars), toJSON(env)) }}"
+      #echo "toJSON: ${{ format('[{0}, {1}, {2}]', toJSON(github), toJSON(vars), toJSON(env)) }}"
 
     - name: NODE_ENV
       run: | # FIXME
