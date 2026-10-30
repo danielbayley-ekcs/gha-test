@@ -38,4 +38,4 @@ jobs:
         version: ^12
 
     - name: Run script
-      run: node index.[jt]s
+      run: node index.ts
