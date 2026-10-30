@@ -9,10 +9,10 @@ on:
         type: environment
         default: production
 
-  workflow_call: *inputs
+  #workflow_call: *inputs
 
 jobs:
   test:
     steps:
     - if: runner.debug == '1' || vars.ACTIONS_STEP_DEBUG == 'true' || inputs.debug == 'true'
-      run: echo '::debug::${{ toJSON([github, vars, env]) }}'
+      run: echo "::debug::${{ toJSON('[github, vars, env]') }}"
