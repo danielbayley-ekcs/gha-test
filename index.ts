@@ -1,12 +1,22 @@
 #! /usr/bin/env node
 const str: string = "abc"
+const n: number = "1"
 
-console.log("NODE_ENV:", process.env.NODE_ENV)
+console.log(n)
 
-console.log("str:", str)
+console.log("NODE_ENV:", process.env.NODE_ENV || "NODE_ENV failed")
 
-console.log(`::debug::${str}`)
-//console.debug(::debug::${str}`)
+const console = {
+  ...globalThis.console,
+  debug(message, ...values) {
+    if (!debug) return ""
 
-if ("RUNNER_DEBUG" in process.env || "ACTIONS_RUNNER_DEBUG" in process.env)
-  console.log(`::debug::RUNNER_DEBUG or ACTIONS_RUNNER_DEBUG is true`)
+    globalThis.console.debug(GITHUB_ACTIONS ? `::debug::${message}` : message)
+    values.forEach(console.dir)
+  }
+}
+
+console.debug(`debugging: ${str}`)
+
+console.log(`::debug::RUNNER_DEBUG or ACTIONS_RUNNER_DEBUG is true`)
+
