@@ -5,9 +5,7 @@ const n: number = "1"
 const console = {
   ...globalThis.console,
   debug(message, ...values) {
-    if (!debug) return ""
-
-    globalThis.console.debug(GITHUB_ACTIONS ? `::debug::${message}` : message)
+    globalThis.console.debug(`::debug::${message}`)
     values.forEach(console.dir)
   }
 }
