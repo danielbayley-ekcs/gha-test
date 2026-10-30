@@ -23,4 +23,5 @@ jobs:
       run: echo "::debug::${{ toJSON('[github, vars, env]') }}"
 
     - name: NODE_ENV
-      run: echo "NODE_ENV: $NODE_ENV"
+      run: |
+        echo "NODE_ENV: $NODE_ENV"
