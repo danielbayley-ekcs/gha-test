@@ -1,15 +1,13 @@
 name: workflow
 
 on:
-  workflow_dispatch: &inputs
+  workflow_dispatch:
     inputs:
       environment:
         description: Source AWS account/region.
         required: true
         type: environment
         default: production
-
-  #workflow_call: *inputs
 
 jobs:
   test:
@@ -24,4 +22,4 @@ jobs:
 
     - name: NODE_ENV
       run: |
-        echo "NODE_ENV: $NODE_ENV"
+        echo "NODE_ENV: ${{ vars.NODE_ENV }}"
