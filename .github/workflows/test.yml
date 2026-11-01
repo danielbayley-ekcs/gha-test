@@ -22,12 +22,8 @@ jobs:
       #NODE_ENV: ${{ vars.NODE_ENV }}
 
     steps:
-    - name: inputs - debug
-      if: inputs.debug #== true
-      run: echo inputs.debug IS SET
-
     - name: Debug context/environment
-      if: runner.debug == '1' || env.ACTIONS_STEP_DEBUG == 'true' || inputs.debug == 'true'
+      if: runner.debug == '1' || env.ACTIONS_STEP_DEBUG == 'true' || inputs.debug
       run: |
         echo '::debug::${{ toJSON(github) }}'
         echo '::debug::${{ toJSON(vars) }}'
