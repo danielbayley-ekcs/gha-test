@@ -23,12 +23,8 @@ jobs:
 
     steps:
     - name: inputs - debug
-      if: inputs.debug == 'true'
+      if: inputs.debug #== true
       run: echo inputs.debug IS SET
-
-    - name: inputs
-      run: |
-        echo inputs: '${{ toJSON(inputs) }}'
 
     - name: Debug context/environment
       if: runner.debug == '1' || env.ACTIONS_STEP_DEBUG == 'true' || inputs.debug == 'true'
