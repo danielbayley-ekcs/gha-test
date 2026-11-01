@@ -17,13 +17,13 @@ jobs:
     environment:
       name: ${{ inputs.environment }}
       deployment: false
-    #env: &env
+    env: &env
+      ACTIONS_STEP_DEBUG: ${{ secrets.ACTIONS_STEP_DEBUG == 'true' || vars.ACTIONS_STEP_DEBUG == 'true' }}
       #NODE_ENV: ${{ vars.NODE_ENV }}
-      #ACTIONS_STEP_DEBUG: ${{ secrets.ACTIONS_STEP_DEBUG || vars.ACTIONS_STEP_DEBUG }}
 
     steps:
     - name: Debug context/environment
-      if: runner.debug == '1' || vars.ACTIONS_STEP_DEBUG == 'true' || inputs.debug == 'true' #env.ACTIONS_STEP_DEBUG
+      if: runner.debug == '1' || env.ACTIONS_STEP_DEBUG || inputs.debug == 'true' #env.ACTIONS_STEP_DEBUG
       run: |
         echo "::debug::${{ toJSON(github) }}"
         echo "::debug::${{ toJSON(vars) }}"
