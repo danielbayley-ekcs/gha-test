@@ -25,14 +25,18 @@ jobs:
     - name: inputs - debug
       if: inputs.debug == 'true'
       run: echo inputs.debug IS SET
-      
+
+    - name: inputs
+      run: |
+        echo inputs: '${{ toJSON(inputs) }}'
+
     - name: Debug context/environment
       if: runner.debug == '1' || env.ACTIONS_STEP_DEBUG == 'true' || inputs.debug == 'true'
       run: |
-        echo "::debug::${{ toJSON(github) }}"
-        echo "::debug::${{ toJSON(vars) }}"
-        echo "::debug::${{ toJSON(env) }}"
-      #echo "toJSON: ${{ format('[{0}, {1}, {2}]', toJSON(github), toJSON(vars), toJSON(env)) }}"
+        echo '::debug::${{ toJSON(github) }}'
+        echo '::debug::${{ toJSON(vars) }}'
+        echo '::debug::${{ toJSON(env) }}'
+        echo '::debug::${{ toJSON(inputs) }}'
 
     - name: Reflect repository environment
       run: jq 'to_entries[] | "\(.key)=\(.value)"' --raw-output <<< '${{ toJSON(vars) }}' >> $GITHUB_ENV
