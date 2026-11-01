@@ -11,15 +11,15 @@ on:
       debug:
         description: Enable debug logging.
         type: boolean
+env:
+  ACTIONS_STEP_DEBUG: ${{ secrets.ACTIONS_STEP_DEBUG == 'true' || vars.ACTIONS_STEP_DEBUG == 'true' }}
+
 jobs:
   test:
     runs-on: ubuntu-latest
     environment:
       name: ${{ inputs.environment }}
       deployment: false
-    env: &env
-      ACTIONS_STEP_DEBUG: ${{ secrets.ACTIONS_STEP_DEBUG == 'true' || vars.ACTIONS_STEP_DEBUG == 'true' }}
-      #NODE_ENV: ${{ vars.NODE_ENV }}
 
     steps:
     - name: Debug context/environment
@@ -36,7 +36,6 @@ jobs:
     - name: NODE_ENV
       run: |
         echo "NODE_ENV: $NODE_ENV"
-      #env: *env
 
     - name: Checkout
       uses: actions/checkout@f548e57e544e1ff5a4c46bf1e1b8685f8e4a348a # v7.0.1
