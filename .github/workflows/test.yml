@@ -23,7 +23,7 @@ jobs:
 
     steps:
     - name: Debug context/environment
-      if: runner.debug == '1' || env.ACTIONS_STEP_DEBUG || inputs.debug == 'true' #env.ACTIONS_STEP_DEBUG
+      if: runner.debug == '1' || env.ACTIONS_STEP_DEBUG == 'true' || inputs.debug == 'true' #env.ACTIONS_STEP_DEBUG
       run: |
         echo "::debug::${{ toJSON(github) }}"
         echo "::debug::${{ toJSON(vars) }}"
