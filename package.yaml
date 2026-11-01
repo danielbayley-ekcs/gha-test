@@ -16,7 +16,11 @@ devEngines:
     onFail: download
 
 devDependencies:
+  "@types/node": ^26.6.6
+  typescript: ^7.0.2
   yaml: ^2.9.1
 
 scripts:
   prepare: yaml --single --json --indent ${TABSIZE:-2} < package.yaml > package.json
+  lint.typecheck: tsc --noEmit
+  lint.tc: pnpm lint.typecheck
