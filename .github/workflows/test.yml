@@ -32,8 +32,7 @@ jobs:
 
     - name: Reflect repository environment
       run: |
-        jq 'to_entries[] | "\(.key)=\(.value)"' <<< '${{ toJSON(vars) }}' >> $GITHUB_ENV
-        printenv
+        jq 'to_entries[] | "\(.key)=\(.value)"' --raw-output <<< '${{ toJSON(vars) }}' >> $GITHUB_ENV
 
     - name: NODE_ENV
       run: |
